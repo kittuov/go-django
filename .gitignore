@@ -1,0 +1,13 @@
+admin/webapp/.tmp/
+admin/webapp/app/
+admin/webapp/bower_components/
+admin/webapp/docs/
+admin/webapp/node_modules/
+admin/webapp/tasks/
+admin/webapp/.bowerrc
+admin/webapp/*.md
+admin/webapp/*.json
+admin/webapp/*.js
+admin/webapp/*.sh
+admin/webapp/*.html
+
