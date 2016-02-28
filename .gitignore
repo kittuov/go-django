@@ -11,3 +11,4 @@ admin/webapp/*.js
 admin/webapp/*.sh
 admin/webapp/*.html
 
+*.DS_Store
