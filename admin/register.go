@@ -49,7 +49,7 @@ func RegApp(name string, args ... interface{}) (*App, error) {
 	// checking if name already exists to raise an error
 	_, found := _apps[name]
 	if found {
-		return nil, AlreadyRegistered{"App" ,name}
+		return nil, ErrAlreadyRegistered{"App" ,name}
 	}
 
 	//registering the app
@@ -94,7 +94,7 @@ func (a *App) RegModel(dat interface{}, args ...interface{}) error {
 	// store the model object or raise an error if already exists.
 	_, found = a.models[name]
 	if found{
-		return AlreadyRegistered{
+		return ErrAlreadyRegistered{
 			"Model",
 			name,
 		}
