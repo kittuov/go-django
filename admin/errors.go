@@ -8,7 +8,7 @@ type ErrAlreadyRegistered struct {
 	name string
 }
 
-func (t ErrAlreadyRegistered) Error() string {
+func (t *ErrAlreadyRegistered) Error() string {
 	return fmt.Sprintf("%s with name '%s' is already registered", t.ftype, t.name)
 }
 
