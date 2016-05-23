@@ -2,18 +2,7 @@ package admin
 
 import (
 	"reflect"
-	"fmt"
 )
-
-// returned if app with given name is already registered
-type AlreadyRegistered struct {
-	ftype string
-	name string
-}
-
-func (t AlreadyRegistered) Error() string {
-	return fmt.Sprintf("%s with name '%s' is already registered", t.ftype, t.name)
-}
 
 type Model struct {
 	name      string
@@ -33,6 +22,7 @@ type tabler interface {
 	TableName() string
 }
 
+// use this to set a verbose name for the model
 type verboser interface {
 	VerboseName() string
 }
@@ -64,9 +54,6 @@ func RegApp(name string, args ... interface{}) (*App, error) {
 
 	//registering the app
 	_apps[name] = app
-
-	//todo: remove following line
-	fmt.Println("Registered %s as %s", name, vname)
 
 	return app, nil
 }
