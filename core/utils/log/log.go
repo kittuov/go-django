@@ -9,14 +9,16 @@ import (
 )
 
 const (
-	DEBUG = 0
-	INFO = 1
-	WARN = 2
-	ERROR = 3
-	FATAL = 4
+	VERBOSE = 0
+	DEBUG = 1
+	INFO = 2
+	WARN = 3
+	ERROR = 4
+	FATAL = 5
 )
 
 var (
+	verbose_logger *log.Logger
 	debug_logger *log.Logger
 	info_logger *log.Logger
 	warn_logger *log.Logger
@@ -25,11 +27,22 @@ var (
 )
 
 func init() {
+	verbose_logger = log.New(os.Stdout, "VERBOSE:", log.Ldate + log.Ltime)
 	debug_logger = log.New(os.Stdout, "DEBUG:", log.Ldate + log.Ltime)
 	info_logger = log.New(os.Stdout, "INFO:", log.Ldate + log.Ltime)
 	warn_logger = log.New(os.Stdout, "WARN:", log.Ldate + log.Ltime)
 	error_logger = log.New(os.Stdout, "ERROR:", log.Ldate + log.Ltime)
 	fatal_logger = log.New(os.Stdout, "FATAL:", log.Ldate + log.Ltime)
+}
+
+// Prints debug level statements
+func Verbose(v ...interface{}) {
+	verbose_logger.Print(v...)
+}
+
+// same as Debug function with formatted string
+func Verbosef(format string, v ...interface{}) {
+	verbose_logger.Printf(format, v...)
 }
 
 // Prints debug level statements
