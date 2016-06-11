@@ -2,7 +2,7 @@
 log package aims at providing level based logging while still supporting
 all the code written in go's native log package.
 
-Tl;Dr
+In short
 
 log.Log method lets you log the data with levels.
 log.SetMinLevel lets you set minimum level to log.
