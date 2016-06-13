@@ -4,13 +4,11 @@ import (
 	"testing"
 	"strings"
 	"log"
-	"os"
 )
 
 type testByteBuffer string
 
 func (l *testByteBuffer) Write(p []byte) (int, error) {
-	os.Stdout.Write(p)
 	*l = testByteBuffer(string(*l) + string(p))
 	return len(p), nil
 }
@@ -19,8 +17,9 @@ func TestLog(t *testing.T) {
 	b := testByteBuffer("")
 	log.SetOutput(&b)
 	Log(VERB, "Verbose")
-	if !strings.Contains(string(b), "VERB") && !strings.Contains(string(b), "Verbose") {
-		t.Fail()
+	lev := levels.getLevel(VERB)
+	if !strings.Contains(string(b), lev.Prefix) && !strings.Contains(string(b), "Verbose") {
+		t.Errorf("The printed log doesnot contain expected prefix %s", lev.Prefix)
 	}
 }
 
@@ -30,7 +29,7 @@ func TestSetMin(t *testing.T) {
 	log.SetOutput(&b)
 	Log(VERB, "Verbose")
 	if string(b) != "" {
-		t.Error("minimum set to Debug but verbose logs are printing")
+		t.Error("minimum set to Debug but Verbose logs are printing")
 	}
 	Log(DEBU, "Debug")
 	Log(INFO, "Info")
