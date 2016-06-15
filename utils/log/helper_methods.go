@@ -57,11 +57,11 @@ func Errorf(format string, v...interface{}) {
 }
 
 // Critical logs
-func Crit(v...interface{}) {
+func Critical(v...interface{}) {
 	Log(CRIT, v...)
 }
 
-func Critf(format string, v...interface{}) {
-	Crit(fmt.Sprintf(format, v...))
+func Criticalf(format string, v...interface{}) {
+	Critical(fmt.Sprintf(format, v...))
 }
 
