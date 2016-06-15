@@ -2,5 +2,4 @@
 > django like web-framework for golang
 
 ### Docs
-1. Log Package
-> [![GoDoc](https://godoc.org/github.com/kittuov/go-django/utils/log?status.svg)](https://godoc.org/github.com/kittuov/go-django/utils/log)
+1. [Log](https://godoc.org/github.com/kittuov/go-django/utils/log) -- Logging framework for the project
