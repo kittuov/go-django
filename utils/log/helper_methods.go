@@ -4,64 +4,64 @@ import "fmt"
 
 // Verbose Methods
 func Verbose(v...interface{}) {
-	Log(VERB, v...)
+	baseLog(VERB, v...)
 }
 
 func Verbosef(format string, v...interface{}) {
-	Verbose(fmt.Sprintf(format, v...))
+	baseLog(VERB, fmt.Sprintf(format, v...))
 }
 
 // Debug Methods
 func Debug(v...interface{}) {
-	Log(DEBU, v...)
+	baseLog(DEBU, v...)
 }
 
 func Debugf(format string, v...interface{}) {
-	Debug(fmt.Sprintf(format, v...))
+	baseLog(DEBU, fmt.Sprintf(format, v...))
 }
 
 // Info logs
 func Info(v...interface{}) {
-	Log(INFO, v...)
+	baseLog(INFO, v...)
 }
 
 func Infof(format string, v...interface{}) {
-	Info(fmt.Sprintf(format, v...))
+	baseLog(INFO, fmt.Sprintf(format, v...))
 }
 
 // Notice logs
 func Notice(v...interface{}) {
-	Log(NOTI, v...)
+	baseLog(NOTI, v...)
 }
 
 func Noticef(format string, v...interface{}) {
-	Notice(fmt.Sprintf(format, v...))
+	baseLog(NOTI, fmt.Sprintf(format, v...))
 }
 
 // Notice logs
 func Warn(v...interface{}) {
-	Log(NOTI, v...)
+	baseLog(NOTI, v...)
 }
 
 func Warnf(format string, v...interface{}) {
-	Warn(fmt.Sprintf(format, v...))
+	baseLog(WARN, fmt.Sprintf(format, v...))
 }
 
 // Error logs
 func Error(v...interface{}) {
-	Log(ERRO, v...)
+	baseLog(ERRO, v...)
 }
 
 func Errorf(format string, v...interface{}) {
-	Error(fmt.Sprintf(format, v...))
+	baseLog(ERRO, fmt.Sprintf(format, v...))
 }
 
 // Critical logs
 func Critical(v...interface{}) {
-	Log(CRIT, v...)
+	baseLog(CRIT, v...)
 }
 
 func Criticalf(format string, v...interface{}) {
-	Critical(fmt.Sprintf(format, v...))
+	baseLog(CRIT, fmt.Sprintf(format, v...))
 }
 

@@ -78,6 +78,10 @@ Best practice is to use the levels set in this package
 eg., log.INFO, log.DEBU, log.WARN etc.,
 */
 func Log(level int, v ...interface{}) {
+	baseLog(level, v)
+}
+
+func baseLog(level int, v ...interface{}) {
 	// Don't log if the level is less than
 	if level < log_min_level {
 		return
@@ -93,7 +97,7 @@ func Log(level int, v ...interface{}) {
 
 	// Log the data
 	coloured_str := log_level.ColorFunc(v...)
-	log.Print(coloured_str)
+	log.Output(3, coloured_str)
 
 	// Reset the prefix
 	log.SetPrefix(prefix)

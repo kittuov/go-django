@@ -26,6 +26,6 @@ funcs present in go's log pkg. By default it logs into INFO level
 BUG(kittuov@gmail.com): adding file name flag just prints out log file number
 line rather than the calling file line number.
 
-BUG(kittuov@gmail.com): No color for flags in log eg: time, short_file, date etc.
+~~BUG(kittuov@gmail.com): No color for flags in log eg: time, short_file, date etc.~~
 */
 package log
