@@ -22,5 +22,10 @@ The package is also compatible with go's built in log pkg. it respects any prefi
 you set, it will output to any output writer you set. Also, any code written using
 the package works with this package seamlessly. it contains all the helper
 funcs present in go's log pkg. By default it logs into INFO level
+
+BUG(kittuov@gmail.com): adding file name flag just prints out log file number
+line rather than the calling file line number.
+
+BUG(kittuov@gmail.com): No color for flags in log eg: time, short_file, date etc.
 */
 package log

@@ -16,23 +16,23 @@ apps:
 func TestUpdate(t *testing.T) {
 	err := Update([]byte(test_data))
 	if err != nil {
-		log.Erro(err)
+		log.Error(err)
 		t.Fail()
 	}
 	if set["title"] != "Krishna Chaitanya" {
-		log.Erro("wrong Title extracted")
+		log.Error("wrong Title extracted")
 		t.Fail()
 	}
 	apps, found := set["apps"].([]interface{})
 	if !found {
-		log.Erro("`apps` is not parsed as a list")
+		log.Error("`apps` is not parsed as a list")
 		t.Fail()
 	}
 	if len(apps) != 3 {
-		log.Erro("`apps` parsed but got wrong length")
+		log.Error("`apps` parsed but got wrong length")
 	}
 	if apps[2] != "data" {
-		log.Erro("wrong `apps` array extracted")
+		log.Error("wrong `apps` array extracted")
 		t.Fail()
 	}
 
@@ -42,7 +42,7 @@ func TestUpdateFile(t *testing.T) {
 	testFile := "test_file.yaml"
 	err := UpdateFile(testFile)
 	if err != nil {
-		log.Erro(err)
+		log.Error(err)
 		t.Fail()
 	}
 

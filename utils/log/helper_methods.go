@@ -3,21 +3,21 @@ package log
 import "fmt"
 
 // Verbose Methods
-func Verb(v...interface{}) {
+func Verbose(v...interface{}) {
 	Log(VERB, v...)
 }
 
-func Verbf(format string, v...interface{}) {
-	Verb(fmt.Sprintf(format, v...))
+func Verbosef(format string, v...interface{}) {
+	Verbose(fmt.Sprintf(format, v...))
 }
 
 // Debug Methods
-func Debu(v...interface{}) {
+func Debug(v...interface{}) {
 	Log(DEBU, v...)
 }
 
-func Debuf(format string, v...interface{}) {
-	Debu(fmt.Sprintf(format, v...))
+func Debugf(format string, v...interface{}) {
+	Debug(fmt.Sprintf(format, v...))
 }
 
 // Info logs
@@ -30,21 +30,30 @@ func Infof(format string, v...interface{}) {
 }
 
 // Notice logs
-func Noti(v...interface{}) {
+func Notice(v...interface{}) {
 	Log(NOTI, v...)
 }
 
-func Notif(format string, v...interface{}) {
-	Noti(fmt.Sprintf(format, v...))
+func Noticef(format string, v...interface{}) {
+	Notice(fmt.Sprintf(format, v...))
+}
+
+// Notice logs
+func Warn(v...interface{}) {
+	Log(NOTI, v...)
+}
+
+func Warnf(format string, v...interface{}) {
+	Warn(fmt.Sprintf(format, v...))
 }
 
 // Error logs
-func Erro(v...interface{}) {
+func Error(v...interface{}) {
 	Log(ERRO, v...)
 }
 
-func Errof(format string, v...interface{}) {
-	Erro(fmt.Sprintf(format, v...))
+func Errorf(format string, v...interface{}) {
+	Error(fmt.Sprintf(format, v...))
 }
 
 // Critical logs
