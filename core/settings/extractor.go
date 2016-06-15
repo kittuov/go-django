@@ -7,9 +7,9 @@ import (
 	"io/ioutil"
 )
 
-type setting map[string]interface{}
+type settingModel map[string]interface{}
 
-var set setting
+var settings settingModel
 
 func UpdateFile(filename string) error {
 	file_path, err := filepath.Abs(filename)
@@ -31,7 +31,7 @@ func UpdateFile(filename string) error {
 
 func Update(b []byte) error {
 	log.Verbosef("Updating settings with data:\n%s", b)
-	err := yaml.Unmarshal(b, &set)
+	err := yaml.Unmarshal(b, &settings)
 	if err != nil {
 		log.Error("Unable to unmarshall data :\n%s", b)
 		return err

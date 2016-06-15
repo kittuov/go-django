@@ -19,11 +19,11 @@ func TestUpdate(t *testing.T) {
 		log.Error(err)
 		t.Fail()
 	}
-	if set["title"] != "Krishna Chaitanya" {
+	if settings["title"] != "Krishna Chaitanya" {
 		log.Error("wrong Title extracted")
 		t.Fail()
 	}
-	apps, found := set["apps"].([]interface{})
+	apps, found := settings["apps"].([]interface{})
 	if !found {
 		log.Error("`apps` is not parsed as a list")
 		t.Fail()
