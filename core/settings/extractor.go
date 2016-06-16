@@ -5,37 +5,110 @@ import (
 	"github.com/kittuov/go-django/utils/log"
 	"gopkg.in/yaml.v2"
 	"io/ioutil"
+	"errors"
 )
 
-type settingModel map[string]interface{}
+type settingsModel map[string]interface{}
 
-var settings settingModel
-
-func UpdateFile(filename string) error {
-	file_path, err := filepath.Abs(filename)
+func (t settingsModel) String() string {
+	out, err := yaml.Marshal(t)
 	if err != nil {
-		log.Errorf("Unable to extract absolute path `%s`", file_path)
-		log.Error(err)
+		log.Warn("Settings can't be marshalled")
+		return ""
+	}
+	return string(out)
+}
+
+var settings = make(settingsModel)
+
+// UpdateFromFile is same as Update but reads from filename.
+// in case of unsuccessful attempt, returns error. filename
+// attribute has to be absolute file path
+func UpdateFromFile(filename string) error {
+	in, err := readFromFile(filename)
+	if err != nil {
+		log.Warnf("Not updating settings from file %s", filename)
 		return err
 	}
-	in, err := ioutil.ReadFile(file_path)
+	log.Verbosef("Read Setting file %s", filename)
+	err = Update(in)
+	return err
+}
+
+// Update takes in a byteArray (as read from a file) and parses it as yml
+// and updates the settings. in case it couldn't update the settings,
+// returns error
+func Update(b []byte) error {
+	log.Verbosef("Updating settings")
+	data, err := getSettingsModel(b)
 	if err != nil {
-		log.Errorf("Unable to open file with path `%s`", file_path)
-		log.Error(err)
+		log.Warn("Not Updating settings")
 		return err
 	}
-	log.Verbosef("Read Setting file %s \n", file_path)
-	Update(in)
+	for key, value := range (data) {
+		settings[key] = value
+	}
+	log.Verbose("Successfully updated settings")
+	log.Verbosef("New Settings are:\n%s", settings)
+
 	return nil
 }
 
-func Update(b []byte) error {
-	log.Verbosef("Updating settings with data:\n%s", b)
-	err := yaml.Unmarshal(b, &settings)
+// Sets a value to the settings if only the field is not already set
+// returns error if couldn't do the job and if succeeded, returns
+// nil
+func SetDefault(yml []byte) error {
+	log.Verbosef("Setting defaults", yml)
+	data, err := getSettingsModel(yml)
 	if err != nil {
-		log.Error("Unable to unmarshall data :\n%s", b)
+		log.Warn("Not Setting Defaults")
 		return err
 	}
+	for key, value := range (data) {
+		_, found := settings[key]
+		if !found {
+			settings[key] = value
+		}
+	}
+	log.Verbose("Successfully set Defaults")
+	log.Verbosef("New Settings are:\n %s", settings)
 	return nil
+}
 
+// Same as SetDefault function but reads from file. it will either set defaults
+// for all of the file or return error.
+func SetDefaultFromFile(filename string) error {
+	in, err := readFromFile(filename)
+	if err != nil {
+		log.Warn("unable to read from file")
+		return err
+	}
+	err = SetDefault(in)
+	return err
+}
+
+func readFromFile(filename string) (in []byte, err error) {
+	is_abs := filepath.IsAbs(filename)
+	if !is_abs {
+		log.Errorf("Filename is not Absolute `%s`", filename)
+		return nil, errors.New("Filename is not Absolute")
+	}
+	in, err = ioutil.ReadFile(filename)
+	if err != nil {
+		log.Errorf("Unable to open file with path `%s`", filename)
+		return
+	}
+	return
+}
+
+func getSettingsModel(b []byte) (data settingsModel, err error) {
+	data = make(settingsModel)
+	log.Verbosef("Parsing yml data :\n%s", b)
+	err = yaml.Unmarshal(b, &data)
+	if err != nil {
+		log.Warn("Unable to parse Data")
+		return
+	}
+	log.Verbose("Successfully parsed yml")
+	return
 }

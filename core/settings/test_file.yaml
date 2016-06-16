@@ -3,3 +3,4 @@ apps:
   - admin
   - sessions
   - contenttype
+config: default_config
