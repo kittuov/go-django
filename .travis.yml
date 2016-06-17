@@ -3,5 +3,3 @@ language: go
 go:
   - 1.6
   - tip
-
-script: go test -v ./src/github.com/kittuov/go-django/.../...
