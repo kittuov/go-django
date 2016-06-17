@@ -58,7 +58,7 @@ func Update(b []byte) error {
 // returns error if couldn't do the job and if succeeded, returns
 // nil
 func SetDefault(yml []byte) error {
-	log.Verbosef("Setting defaults", yml)
+	log.Verbosef("Setting defaults")
 	data, err := getSettingsModel(yml)
 	if err != nil {
 		log.Warn("Not Setting Defaults")

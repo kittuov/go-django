@@ -27,4 +27,6 @@ func main() {
 	fmt.Print(commands)
 }
 
-func Serve()
+func Serve() {
+	return
+}
