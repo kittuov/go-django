@@ -5,3 +5,4 @@ go:
   - tip
 
 script: go test -v ./src/github.com/kittuov/go-django/.../...
+
