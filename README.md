@@ -5,7 +5,8 @@ Port of Python/Django web-framework for GoLang
 
 ### Docs
 1. [Log](https://godoc.org/github.com/kittuov/go-django/utils/log) -- Logging framework for the project
-##### TODO: 
-> - Support for builtin logging framework. 
-> - Support for setting package wide log level.
+
+  ##### TODO: 
+  > - Support for builtin logging framework. 
+  > - Support for setting package wide log level.
 2. [Settings](https://godoc.org/github.com/kittuov/go-django/core/settings) -- Settings framework 
