@@ -16,7 +16,6 @@ type App struct {
 	models map[string]*Model
 }
 
-
 // Use this interface to override the "kind" of the model (table name in datastore)
 type tabler interface {
 	TableName() string
@@ -27,7 +26,7 @@ type verboser interface {
 	VerboseName() string
 }
 
-func RegApp(name string, args ... interface{}) (*App, error) {
+func RegApp(name string, args ...interface{}) (*App, error) {
 	// Initializing _apps to an initial value
 	if _apps == nil {
 		_apps = make(map[string]*App)
@@ -37,19 +36,19 @@ func RegApp(name string, args ... interface{}) (*App, error) {
 	var vname string
 	if tem, found := args[0].(string); found {
 		vname = tem
-	}else {
+	} else {
 		vname = name
 	}
 	app := &App{
-		name: name,
-		vname: vname,
+		name:   name,
+		vname:  vname,
 		models: make(map[string]*Model),
 	}
 
 	// checking if name already exists to raise an error
 	_, found := _apps[name]
 	if found {
-		return nil, ErrAlreadyRegistered{"App" ,name}
+		return nil, ErrAlreadyRegistered{"App", name}
 	}
 
 	//registering the app
@@ -58,7 +57,7 @@ func RegApp(name string, args ... interface{}) (*App, error) {
 	return app, nil
 }
 
-func GetApp(name string)(*App, bool){
+func GetApp(name string) (*App, bool) {
 	app, found := _apps[name]
 	return app, found
 }
@@ -73,34 +72,33 @@ func (a *App) RegModel(dat interface{}, args ...interface{}) error {
 	cusTname, found := dat.(tabler)
 	if found {
 		tname = cusTname.TableName()
-	}else {
+	} else {
 		tname = name
 	}
 	cusVname, found := dat.(verboser)
 	if found {
 		vname = cusVname.VerboseName()
-	}else {
+	} else {
 		vname = name
 	}
 
 	// generate a Model Object
 	mod := &Model{
-		name: name,
-		vname: vname,
-		tname: tname,
+		name:      name,
+		vname:     vname,
+		tname:     tname,
 		modelType: dtype,
 	}
 
 	// store the model object or raise an error if already exists.
 	_, found = a.models[name]
-	if found{
+	if found {
 		return ErrAlreadyRegistered{
 			"Model",
 			name,
 		}
-	}else{
+	} else {
 		a.models[name] = mod
 	}
 	return nil
 }
-

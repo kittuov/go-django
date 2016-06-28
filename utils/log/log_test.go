@@ -1,9 +1,9 @@
 package log
 
 import (
-	"testing"
-	"strings"
 	"log"
+	"strings"
+	"testing"
 )
 
 type testByteBuffer string

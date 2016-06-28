@@ -1,8 +1,8 @@
 package godjadmin
 
 import (
-	"os"
 	"fmt"
+	"os"
 )
 
 type Command struct {
@@ -15,8 +15,8 @@ type Command struct {
 var (
 	commands = []Command{
 		{
-			Cmd:"Run",
-			ShortDesc:"Hello Bro",
+			Cmd:       "Run",
+			ShortDesc: "Hello Bro",
 		},
 	}
 )

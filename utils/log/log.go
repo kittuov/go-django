@@ -4,58 +4,58 @@ Use this package's methods to write logs any where
 package log
 
 import (
+	"github.com/fatih/color"
 	"log"
 	"os"
-	"github.com/fatih/color"
 )
 
 const (
-	VERB = 0
-	DEBU = 1
-	INFO = 2
-	NOTI = 3
-	WARN = 4
-	ERRO = 5
-	CRIT = 6
+	VERB          = 0
+	DEBU          = 1
+	INFO          = 2
+	NOTI          = 3
+	WARN          = 4
+	ERRO          = 5
+	CRIT          = 6
 	default_level = INFO
 )
 
 var (
 	log_min_level = 0
-	levels = logLevels{
+	levels        = logLevels{
 		&logLevel{
-			Level:VERB,
-			Prefix:"VERBOSE",
-			ColorFunc:color.New(color.FgBlue).SprintFunc(),
+			Level:     VERB,
+			Prefix:    "VERBOSE",
+			ColorFunc: color.New(color.FgBlue).SprintFunc(),
 		},
 		&logLevel{
-			Level:DEBU,
-			Prefix:"DEBUG",
-			ColorFunc:color.New(color.FgCyan).SprintFunc(),
+			Level:     DEBU,
+			Prefix:    "DEBUG",
+			ColorFunc: color.New(color.FgCyan).SprintFunc(),
 		},
 		&logLevel{
-			Level:INFO,
-			Prefix:"INFO",
-			ColorFunc:color.New(color.FgWhite).SprintFunc(),
+			Level:     INFO,
+			Prefix:    "INFO",
+			ColorFunc: color.New(color.FgWhite).SprintFunc(),
 		},
 		&logLevel{
-			Level:NOTI,
-			Prefix:"NOTICE",
-			ColorFunc:color.New(color.FgGreen).SprintFunc(),
+			Level:     NOTI,
+			Prefix:    "NOTICE",
+			ColorFunc: color.New(color.FgGreen).SprintFunc(),
 		},
 		&logLevel{
-			Level:WARN,
-			Prefix:"WARNING",
+			Level:     WARN,
+			Prefix:    "WARNING",
 			ColorFunc: color.New(color.FgYellow).SprintFunc(),
 		},
 		&logLevel{
-			Level:ERRO,
-			Prefix:"ERROR",
+			Level:     ERRO,
+			Prefix:    "ERROR",
 			ColorFunc: color.New(color.FgRed).SprintFunc(),
 		},
 		&logLevel{
-			Level:CRIT,
-			Prefix:"CRITICAL",
+			Level:     CRIT,
+			Prefix:    "CRITICAL",
 			ColorFunc: color.New(color.FgMagenta).SprintFunc(),
 		},
 	}
@@ -68,7 +68,6 @@ func init() {
 	log.SetOutput(os.Stdout)
 	log.SetFlags(log.Lshortfile + log.Ltime)
 }
-
 
 /*
 Log takes in level of the log and data to log.

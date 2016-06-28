@@ -5,7 +5,7 @@ import "fmt"
 // returned if app with given name is already registered
 type ErrAlreadyRegistered struct {
 	ftype string
-	name string
+	name  string
 }
 
 func (t ErrAlreadyRegistered) Error() string {

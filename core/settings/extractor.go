@@ -1,11 +1,11 @@
 package settings
 
 import (
-	"path/filepath"
+	"errors"
 	"github.com/kittuov/go-django/utils/log"
 	"gopkg.in/yaml.v2"
 	"io/ioutil"
-	"errors"
+	"path/filepath"
 )
 
 type settingsModel map[string]interface{}
@@ -45,7 +45,7 @@ func Update(b []byte) error {
 		log.Warn("Not Updating settings")
 		return err
 	}
-	for key, value := range (data) {
+	for key, value := range data {
 		settings[key] = value
 	}
 	log.Verbose("Successfully updated settings")
@@ -64,7 +64,7 @@ func SetDefault(yml []byte) error {
 		log.Warn("Not Setting Defaults")
 		return err
 	}
-	for key, value := range (data) {
+	for key, value := range data {
 		_, found := settings[key]
 		if !found {
 			settings[key] = value

@@ -1,9 +1,9 @@
 package settings
 
 import (
-	"testing"
 	"github.com/kittuov/go-django/utils/log"
 	"path/filepath"
+	"testing"
 )
 
 const test_data = `

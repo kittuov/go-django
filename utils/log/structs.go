@@ -17,7 +17,7 @@ func (l *logLevels) getFunc(Level int) func(...interface{}) string {
 }
 
 func (l *logLevels) getLevel(Level int) *logLevel {
-	for _, item := range (*l) {
+	for _, item := range *l {
 		if item.Level == Level {
 			return item
 		}
