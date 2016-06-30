@@ -38,9 +38,9 @@ func UpdateFromFile(filename string) error {
 // Update takes in a byteArray (as read from a file) and parses it as yml
 // and updates the settings. in case it couldn't update the settings,
 // returns error
-func Update(b []byte) error {
+func Update(yml []byte) error {
 	log.Verbosef("Updating settings")
-	data, err := getSettingsModel(b)
+	data, err := getSettingsModel(yml)
 	if err != nil {
 		log.Warn("Not Updating settings")
 		return err
