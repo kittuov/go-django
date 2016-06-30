@@ -4,7 +4,7 @@ Port of Python/Django web-framework for GoLang
 [![Gitter](https://badges.gitter.im/kittuov/go-django.svg)](https://gitter.im/kittuov/go-django?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/kittuov/go-django/master/LICENSE)
 [![Build Status](https://travis-ci.org/kittuov/go-django.svg?branch=master)](https://travis-ci.org/kittuov/go-django)
-[![codecov](https://codecov.io/gh/kittuov/go-django/branch/master/graph/badge.svg)](https://codecov.io/gh/kittuov/go-django)
+[![codecov](https://img.shields.io/codecov/c/github/kittuov/go-django.svg)](https://codecov.io/gh/kittuov/go-django)
 
 ### Docs
 1. [Log](https://godoc.org/github.com/kittuov/go-django/utils/log) -- Logging framework for the project
