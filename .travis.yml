@@ -5,7 +5,7 @@ go:
   - tip
 
 script:
-  - go test ./.../ -covermode=atomic
+  - ./go_test.sh
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
